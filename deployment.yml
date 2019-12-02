@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: test-kube
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: test-kube
+    spec:
+      containers:
+      - name: hello-world-apache 
+        image: wlieberman/test-interlock-apache:0.0.7
+        ports:
+        - name: http
+          containerPort: 80
