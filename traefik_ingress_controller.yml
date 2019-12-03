@@ -126,6 +126,8 @@ spec:
         - "--metrics.prometheus=true"
         - "--accesslog=true"
         - "--global.sendAnonymousUsage=false"
+      nodeSelector:
+        node-role: proxy
 ---
 kind: Service
 apiVersion: v1
