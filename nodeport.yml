@@ -4,6 +4,7 @@ metadata:
   name: test-kube
   labels:
     app: test-kube
+  namespace: jamie-demo
 spec:
   selector:
     app: test-kube

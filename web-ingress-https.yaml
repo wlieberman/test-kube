@@ -1,0 +1,45 @@
+# Author: Billy Lieberman <wlieberman@gmail.com>
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: test-kube-ingress
+  namespace: jamie-demo
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`jamie.billylieberman.com`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: test-kube
+      port: 80
+  tls:
+    certResolver: myresolver
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: test-kube-ingress-redirect
+  namespace: jamie-demo
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+# Author: Billy Lieberman <wlieberman@gmail.com>
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: test-kube-ingress
+  namespace: jamie-demo
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`jamie.billylieberman.com`) && PathPrefix(`/`)
+    kind: Rule
+    services:
+    - name: test-kube
+      port: 80
+    middlewares:
+      - name: test-kube-ingress-redirect

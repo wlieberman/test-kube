@@ -2,9 +2,10 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: test-kube-ingress
+  namespace: jamie-demo
 spec:
   rules:
-    - host: steve.kube.billylieberman.com
+    - host: jamie.billylieberman.com
       http:
         paths:
           - path: /

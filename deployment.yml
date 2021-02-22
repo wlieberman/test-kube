@@ -1,9 +1,13 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: test-kube
+  namespace: jamie-demo
 spec:
-  replicas: 1
+  replicas: 2
+  selector:
+    matchLabels:
+      app: test-kube
   template:
     metadata:
       labels:

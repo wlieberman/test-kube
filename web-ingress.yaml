@@ -1,0 +1,17 @@
+# Author: Billy Lieberman <wlieberman@gmail.com>
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jamie-ingress
+  namespace: jamie-demo
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: jamie.billylieberman.com # Update this value to reflect the fqdn of your site
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: test-kube
+              servicePort: 80
